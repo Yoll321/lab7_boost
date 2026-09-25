@@ -96,8 +96,10 @@ bool Model::matchesMasks(const fs::path& filepath) const {
 }
 
 bool isStored(const fs::path& p, const std::vector<fs::path>& v) {
-    if (std::find(v.begin(), v.end(), p) != v.end())
-        return true;
+    for (const auto& storedPath : v) {
+        if (fs::equivalent(p, storedPath))
+            return true;
+    }
     return false;
 }
 
