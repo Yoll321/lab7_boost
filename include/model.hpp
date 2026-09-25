@@ -2,6 +2,7 @@
 
 #include "boost_includes.hpp"
 #include <vector>
+#include <deque>
 
 class IModel {
 public:
