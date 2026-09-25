@@ -95,6 +95,12 @@ bool Model::matchesMasks(const fs::path& filepath) const {
     return false;
 }
 
+bool isStored(const fs::path& p, const std::vector<fs::path>& v) {
+    if (std::find(v.begin(), v.end(), p) != v.end())
+        return true;
+    return false;
+}
+
 void Model::getFilenames(void)
 {
     int max_depth = vm_["depth"].as<int>();
@@ -105,7 +111,7 @@ void Model::getFilenames(void)
     if (vm_.count("path") == 0)
         paths.push_back(fs::path("."));
     else for (const auto& entry : vm_["path"].as<std::vector<std::string>>()) {
-        if (fs::is_directory(entry) && !excluded(entry))
+        if (fs::is_directory(entry) && !excluded(entry) && !isStored(entry, paths))
             paths.push_back(fs::path(entry));
     }
     if (paths.empty()) {
@@ -126,7 +132,8 @@ void Model::getFilenames(void)
             }
 
             if (fs::is_regular_file(*it) && matchesMasks(*it) && fs::file_size(*it) >= min_size)
-                filepaths_.push_back(*it);
+                if (!isStored(*it, filepaths_))
+                    filepaths_.push_back(*it);
             if (fs::is_directory(*it) && (it.depth() >= max_depth || excluded(*it)))
                 it.disable_recursion_pending();
         }
