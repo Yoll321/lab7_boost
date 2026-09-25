@@ -11,3 +11,10 @@ void Controller::getFilenames(void)
     model_->getFilenames();
     return;
 }
+
+void Controller::findDuplicates(void)
+{
+    model_->findDuplicates();
+    view_->display_duplicates(model_->getDuplicatesTable());
+    return;
+}

@@ -9,6 +9,7 @@ add_executable(lab7
     ${CMAKE_CURRENT_SOURCE_DIR}/source/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/source/model.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/source/controller.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/source/view.cpp
 )
 
 target_include_directories(lab7

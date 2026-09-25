@@ -1,7 +1,10 @@
+#pragma once
+
 #include <memory>
 
 #include "model.hpp"
 #include "view.hpp"
+#include "boost_includes.hpp"
 
 class Controller {
 private:
@@ -13,4 +16,5 @@ public:
         : model_(model), view_(view) {}
     void saveArgs(int argc, char* argv[]);
     void getFilenames(void);
+    void findDuplicates(void);
 };

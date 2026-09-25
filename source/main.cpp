@@ -16,6 +16,7 @@ int main(int argc, char* argv[]) {
 
     controller.saveArgs(argc, argv);
     controller.getFilenames();
+    controller.findDuplicates();
 
     return 0;
 }

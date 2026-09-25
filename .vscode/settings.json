@@ -1,5 +1,0 @@
-{
-    "cmake.debugConfig": {
-        "args": ["--block-size=5", "--masks=*.hpp", "*.cpp"]
-    }
-}
